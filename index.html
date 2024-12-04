@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    
+    
+    <div class="wrapper">
+        <form id="loginForm" action="#">
+            <h1>Login</h1>
+            <div class="inputbox">
+                <input type="text" placeholder="Username" id="username" name="username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="inputbox">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <i class='bx bxs-lock'></i>
+            </div>
+            <div class="remember-me">
+                <label for=""><input type="checkbox" name="check" id="check">Remember Me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            
+            
+            <button type="submit" class="button">Login</button>
+            <div id="errorMessage" class="error-message"></div> 
+            <div id="successMessage" class="success-message"></div>
+
+            <div class="signup">
+                <p>Don't have an account? <a href="#" id="signup">Register</a></p>
+                
+            </div>
+        </form>
+    </div> 
+    <script>
+        const validCredentials = {
+        username: "Sohan RC",
+        password: "password123",
+        };
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("errorMessage");
+        const successMessage = document.getElementById("successMessage");
+
+        if (username === validCredentials.username && password === validCredentials.password) {
+            errorMessage.style.display = "none"; // Hide the error message if previously shown
+            successMessage.textContent = `Welcome, ${username}! You have successfully logged in.`; // Display success message
+            successMessage.style.display = "block"; // Show the success message
+
+        // Optionally redirect after a delay
+            setTimeout(() => {
+            window.location.href = "dashboard.html"; // Redirect to dashboard
+            }, 2000); // Wait for 2 seconds
+        }    else {
+        successMessage.style.display = "none"; // Hide the success message if previously shown
+        errorMessage.textContent = "Invalid Credentials. Please try again."; // Set the error message
+        errorMessage.style.display = "block"; // Show the error message
+        }   
+});
+
+
+      </script>       
+</body>
+</html>
